@@ -1,6 +1,6 @@
 import pytest
 from src.models.sqlite.settings import db_connection_handler
-from src.models.sqlite.repositories import PetsRepository
+from src.models.sqlite.repositories import PetsRepository, PeopleRepository
 
 
 db_connection_handler.connect_to_db()
@@ -20,4 +20,6 @@ def test_delete_pets():
     repo.delete_pets(name="belinha")  # pegando um nome que está armazenado
 
 
-# def test_
+def test_insert_person():
+    repo = PeopleRepository(db_connection=db_connection_handler)
+    repo.insert_person(first_name="test name", last_name="test last", age=77, pet_id=2)
